@@ -1,5 +1,5 @@
 
-const actions = require('../e2e/actions/commands')
+const actions = require('./actions/commands')
 
 describe('Automating DuckDuckGo Search', () => {
   it('Searches value and checks the first search result', () => {
