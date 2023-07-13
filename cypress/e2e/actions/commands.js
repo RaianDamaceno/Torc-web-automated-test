@@ -3,22 +3,27 @@ const locators = require('../locators/search-locators')
 
 export function webSearch(value) {
     cy.get(locators.input_search_homepage)
-        .focus()
+        .clear()
         .type(value)
-        .type('{esc}');
+        .type('{enter}');
 
 
     cy.get(locators.btn_submit_search)
         .click()
+
+    cy.get(locators.element_first_search_result);
 }
 
-export function getFirstResult() {
+export function getFirstResult(website) {
     cy.get(locators.element_first_search_result)
         .first()
         .click()
+
+    cy.location('href')
+        .should('contains', website);
 }
 
-export function verifyResult() {
+export function verifyResult(website_url) {
     cy.url()
-        .should('contains', 'https://www.football-data.org/')
+        .should('contains', website_url)
 }
